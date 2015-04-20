@@ -27,6 +27,13 @@
          <artifactId>APPaid-ejb</artifactId>
          <type>ejb</type>
       </dependency>
+       <dependency>
+         <groupId>it.appaid</groupId>
+         <artifactId>APPaid-common</artifactId>
+         <type>jar</type>
+      </dependency>
+      
+      		
    </dependencies>
 
    <build>

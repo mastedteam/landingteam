@@ -56,6 +56,26 @@
          <scope>provided</scope>
       </dependency>
 
+      <dependency>
+      	<groupId>it.appaid</groupId>
+      	<artifactId>APPaid-common</artifactId>
+      </dependency>
+      
+      <dependency>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      
+      <dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-api</artifactId>
+			  </dependency>
+			  <dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-core</artifactId>
+			  </dependency>
+      
    </dependencies>
 
    <build>
