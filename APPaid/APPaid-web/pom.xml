@@ -17,12 +17,6 @@
    <dependencies>
 
       <!-- Dependency on the EJB module so we can use it's services if needed -->
-      <dependency>
-         <groupId>it.appaid</groupId>
-         <artifactId>APPaid-ejb</artifactId>
-         <type>ejb</type>
-         <scope>provided</scope>
-      </dependency>
 
       <!-- Import the JAX-RS API, we use provided scope as the API is included 
          in JBoss AS 7 -->

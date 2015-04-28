@@ -1,10 +1,11 @@
 package it.appaid.view.group;
 
 
-import it.appaid.controller.group.ControllerGroup;
+import it.appaid.interfaces.group.EjbGroupRemote;
+import it.appaid.util.EjbInvoker;
 
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,17 +19,25 @@ import org.apache.logging.log4j.Logger;
 @RequestScoped
 public class ViewGroup {
 
-	@Inject
-	private ControllerGroup controller;
+	static final Logger logger = LogManager.getLogger(ViewGroup.class);
 	
-	static final Logger logger = LogManager.getLogger(ControllerGroup.class);
+	private EjbGroupRemote service;
 
 	@GET
 	@Produces("text/json")
 	public String listAllMembers() {
-		logger.info("provaaa");
-		logger.debug("prova debug");
-	   return controller.getTestString();
+		logger.info("log di ingo");
+		logger.debug("lo di debug");
+
+		try {
+			service = EjbInvoker.getInstance().lookupEjbGroupImpl();
+			return service.getGroupList();
+		} catch (NamingException e) {
+			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			return "errore";
+		}
+		 
    }
 
 //   @GET
@@ -37,5 +46,6 @@ public class ViewGroup {
 //   public Member lookupMemberById(@PathParam("id") long id) {
 //      return em.find(Member.class, id);
 //   }
-   
+	
+
 }
