@@ -5,4 +5,4 @@
  * @author manuel
  *
  */
-package it.appaid.interfaces.group;
+package it.appaid.controller.group;

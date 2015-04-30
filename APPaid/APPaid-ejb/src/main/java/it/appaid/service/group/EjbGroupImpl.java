@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package it.appaid.service.group;
 
 import it.appaid.interfaces.group.EjbGroupLocal;
@@ -24,3 +25,31 @@ public class EjbGroupImpl implements EjbGroupRemote, EjbGroupLocal {
 	}
 
 }
+=======
+package it.appaid.service.group;
+
+import java.rmi.RemoteException;
+
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class EjbGroupImpl
+ */
+@Stateless
+public class EjbGroupImpl {
+
+    /**
+     * Default constructor. 
+     */
+    public EjbGroupImpl() {
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	public String getTestString(){
+		
+		return "sto cazzo";
+	}
+
+}
+>>>>>>> branch 'develop' of https://github.com/mastedteam/landingteam.git
