@@ -1,8 +1,11 @@
 package it.appaid.view.group;
 
 
+import it.appaid.dto.DtoGroup;
 import it.appaid.interfaces.group.EjbGroupRemote;
 import it.appaid.util.EjbInvoker;
+
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.naming.NamingException;
@@ -25,18 +28,18 @@ public class ViewGroup {
 
 	@GET
 	@Produces("text/json")
-	public String listAllMembers() {
+	public List<DtoGroup> listAllMembers() {
 		logger.info("log di ingo");
 		logger.debug("lo di debug");
-
+		List<DtoGroup> group = null;
 		try {
 			service = EjbInvoker.getInstance().lookupEjbGroupImpl();
-			return service.getGroupList();
+			group = service.getGroupList();
 		} catch (NamingException e) {
 			e.printStackTrace();
 			logger.error(e.getMessage(), e);
-			return "errore";
 		}
+		return group;
 		 
    }
 

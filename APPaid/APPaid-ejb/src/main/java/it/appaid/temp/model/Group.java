@@ -1,25 +1,22 @@
-package it.appaid.model;
+package it.appaid.temp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
-@Entity
-@XmlRootElement
-@Table
+//
+//@Entity
+//@XmlRootElement
+//@Table
 public class Group implements Serializable {
    /** Default value included to remove warning. Remove or modify at will. **/
    private static final long serialVersionUID = 1L;
@@ -41,7 +38,7 @@ public class Group implements Serializable {
    
    @NotNull
    @NotEmpty
-   private String date_creation;
+   private Date date_creation;
 
    @NotNull
    @NotEmpty
@@ -79,11 +76,11 @@ public void setFlag_deleted(String flag_deleted) {
 	this.flag_deleted = flag_deleted;
 }
 
-public String getDate_creation() {
+public Date getDate_creation() {
 	return date_creation;
 }
 
-public void setDate_creation(String date_creation) {
+public void setDate_creation(Date date_creation) {
 	this.date_creation = date_creation;
 }
 
