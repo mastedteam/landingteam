@@ -16,11 +16,6 @@
 
    <dependencies>
    
-   <dependency>
-	<groupId>mysql</groupId>
-	<artifactId>mysql-connector-java</artifactId>
-	<version>5.1.6</version>
-</dependency>
    
 
       <!-- Declare the APIs we depend on and need for compilation. All of 
@@ -86,17 +81,7 @@
       <!-- Optional, but highly recommended -->
       <!-- Arquillian allows you to test enterprise code such as EJBs and 
          Transactional(JTA) JPA from JUnit/TestNG -->
-      <dependency>
-         <groupId>org.jboss.arquillian.junit</groupId>
-         <artifactId>arquillian-junit-container</artifactId>
-         <scope>test</scope>
-      </dependency>
       
-      <dependency>
-         <groupId>org.jboss.arquillian.protocol</groupId>
-         <artifactId>arquillian-protocol-servlet</artifactId>
-         <scope>test</scope>               
-      </dependency>
 
       <dependency>
       	<groupId>it.appaid</groupId>

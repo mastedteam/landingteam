@@ -1,25 +1,21 @@
 
 package it.appaid.service.group;
 
+import it.appaid.dao.group.DaoGroup;
 import it.appaid.dto.DtoGroup;
 import it.appaid.interfaces.group.EjbGroupLocal;
 import it.appaid.interfaces.group.EjbGroupRemote;
 import it.appaid.model.AppGroup;
-import it.appaid.model.AppOwned;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Session Bean implementation class EjbGroupImpl
@@ -27,8 +23,10 @@ import javax.persistence.metamodel.Metamodel;
 @Stateless
 public class EjbGroupImpl implements EjbGroupRemote, EjbGroupLocal {
 
-	@Inject
-	private EntityManager em;
+	@EJB
+	private DaoGroup dao;
+	
+	static final Logger logger = LogManager.getLogger(EjbGroupImpl.class);
 	
     /**
      * Default constructor. 
@@ -39,10 +37,12 @@ public class EjbGroupImpl implements EjbGroupRemote, EjbGroupLocal {
 
 	@Override
 	public List<DtoGroup> getGroupList() {
+		try{
+		logger.info("BEGIN");
 		
-		TypedQuery<AppGroup> query =
-			      em.createNamedQuery("AppGroup.findAll", AppGroup.class);
-			  List<AppGroup> groupList = query.getResultList();
+//		TypedQuery<AppGroup> query = em.createNamedQuery("AppGroup.findAll", AppGroup.class);
+//			  List<AppGroup> groupList = query.getResultList();
+		List<AppGroup> groupList = dao.getGroups();
 	      
 	      List<DtoGroup> result = new ArrayList<DtoGroup>();
 	      if(groupList!=null && !groupList.isEmpty()){
@@ -54,6 +54,13 @@ public class EjbGroupImpl implements EjbGroupRemote, EjbGroupLocal {
 		
 		
 		return result;
+		}catch(Exception e){
+			logger.error(e.getMessage(),e);
+			throw new EJBException(e);
+		}
+		finally{
+			logger.info("END");
+		}
 	}
 	
 	private DtoGroup wrapModelToDto(AppGroup model){

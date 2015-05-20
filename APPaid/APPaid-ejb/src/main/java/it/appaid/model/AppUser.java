@@ -1,9 +1,18 @@
 package it.appaid.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -12,7 +21,10 @@ import java.util.List;
  */
 @Entity
 @Table(name="app_user")
-@NamedQuery(name="AppUser.findAll", query="SELECT a FROM AppUser a")
+
+@NamedQueries(value = {
+		@NamedQuery(name="AppUser.findOwned", query="select u, o from AppUser u join u.appOwneds o where u.idUser = :userId")
+})
 public class AppUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
